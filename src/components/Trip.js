@@ -11,13 +11,14 @@ export default class Trip extends Component{
     super(props)
     this.state={
       trips: [],
-      adventureObj: {},
-      adventureDateObj: moment()
+      potentialAdventures: [],
+      adventureObj: { notes: "", location: "", point_person:"", description:"", date:"", category: "", timeHr: "12", timeMin:"00", ampm: "AM"},
+      adventureDateObj: moment(),
     }
   }
 
   handleSubmit = () => {
-    console.log("POST request to /adventures")
+    this.setState({potentialAdventures: [...this.state.potentialAdventures, this.state.adventureObj]})
   }
 
   handleSelect = (e) => {
@@ -27,17 +28,29 @@ export default class Trip extends Component{
     })
   }
 
-  handleTimeInput = (e) => {
+  handleTimeHrInput = (e) => {
     const timeInput = e.target.value
     this.setState((prevState) =>{
-      return {adventureObj: {...prevState.adventureObj, time: timeInput}}
+      return {adventureObj: {...prevState.adventureObj, timeHr: timeInput}}
+    })
+  }
+  handleTimeMinInput = (e) => {
+    const timeInput = e.target.value
+    this.setState((prevState) =>{
+      return {adventureObj: {...prevState.adventureObj, timeMin: timeInput}}
+    })
+  }
+  handleTimeAMPMInput = (e) => {
+    const timeInput = e.target.value
+    this.setState((prevState) =>{
+      return {adventureObj: {...prevState.adventureObj, ampm: timeInput}}
     })
   }
 
   handleNotesInput = (e) => {
     const notesInput = e.target.value
     this.setState((prevState) =>{
-      return {adventureObj: {...prevState.adventureObj, note: notesInput}}
+      return {adventureObj: {...prevState.adventureObj, notes: notesInput}}
     })
   }
 
@@ -76,20 +89,24 @@ export default class Trip extends Component{
       <Grid>
       <Grid.Row>
         <Grid.Column>
-          <Dreamboat />
+          <Dreamboat adventures={this.state.potentialAdventures}/>
         </Grid.Column>
         <Grid.Column>
           <Itinerary/>
           <br />
           <AdventureForm
+            handleSubmit={this.handleSubmit}
             handleSelect={this.handleSelect}
-            handleTimeInput={this.handleTimeInput}
+            handleTimeHrInput={this.handleTimeHrInput}
+            handleTimeMinInput={this.handleTimeMinInput}
+            handleTimeAMPMInput={this.handleTimeAMPMInput}
             handleNotesInput={this.handleNotesInput}
             handleLocationInput={this.handleLocationInput}
             handlePointPersonInput={this.handlePointPersonInput}
             handleDescriptionInput={this.handleDescriptionInput}
             handleAdventureDate={this.handleAdventureDate}
             adventureDate={this.state.adventureDateObj}
+            amOrPm={this.state.adventureObj.ampm}
              />
         </Grid.Column>
         <Grid.Column>

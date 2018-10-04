@@ -1,10 +1,15 @@
 import React from 'react'
+import PotentialAdventure from './PotentialAdventure'
 
 
-const Dreamboat = (props) =>
+const Dreamboat = ({adventures}) =>
 <div>
 <h3>Potential Adventures</h3>
-<div className="dream-box">
+
+{adventures.map(adventure => <PotentialAdventure adventure={adventure} />)}
+
 </div>
-</div>
+
+
+
 export default Dreamboat
