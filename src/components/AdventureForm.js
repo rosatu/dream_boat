@@ -39,7 +39,7 @@ const AdventureForm = ({amOrPm, handleSelect, handleTimeHrInput, handleTimeMinIn
             />
         </div>
         <div className="col">
-          <select onChange={handleTimeHrInput} className="form-control" value="Category">
+          <select onChange={handleTimeHrInput}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

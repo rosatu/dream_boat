@@ -1,6 +1,6 @@
 import React,{Fragment} from 'react'
 
-const PotentialAdventure = ({adventure}) =>
+const PotentialAdventure = ({adventure, handleAddAdventureButton}) =>
   <Fragment>
 
     <div className="card">
@@ -9,12 +9,12 @@ const PotentialAdventure = ({adventure}) =>
             `${adventure.description} `
           }</h5>
         <p className="card-text">{
-            `Location: ${adventure.location} Date: ${adventure.date} Time:${adventure.timeHr}:${adventure.timeMin}${adventure.ampm}`
+            `@${adventure.location} ${adventure.date} ${adventure.timeHr}:${adventure.timeMin}${adventure.ampm}`
           }</p>
           <p className="card-text">{
-              `point person: ${adventure.point_person} notes: ${adventure.notes}`
+              `point person: ${adventure.point_person} ${adventure.notes}`
             }</p>
-        <button className="btn btn-primary" onClick={null}>Edit Adventure</button>
+        <button className="btn btn-primary" onClick={()=>handleAddAdventureButton(adventure)}>Add Adventure To Itinerary</button>
       </div>
     </div>
 

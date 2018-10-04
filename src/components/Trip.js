@@ -11,11 +11,18 @@ export default class Trip extends Component{
     super(props)
     this.state={
       trips: [],
+      adventures: [],
       potentialAdventures: [],
-      adventureObj: { notes: "", location: "", point_person:"", description:"", date:"", category: "", timeHr: "12", timeMin:"00", ampm: "AM"},
+      adventureObj: { notes: "", location: "", point_person:"", description:"", date:"", category: "", timeHr: "1", timeMin:"00", ampm: "AM"},
       adventureDateObj: moment(),
     }
   }
+
+  // componentDidMount() {
+  //   fetch('')
+  //     .then( r => r.json())
+  //     .then(itineraryAdventures => this.setState({adventures})
+  // }
 
   handleSubmit = () => {
     this.setState({potentialAdventures: [...this.state.potentialAdventures, this.state.adventureObj]})
@@ -82,6 +89,18 @@ export default class Trip extends Component{
     this.setState({adventureDateObj: date})
   }
 
+  handleAddAdventureButton = (adventure) => {
+  //   fetch(``,{
+  //     method: "POST",
+  //     headers: {
+  //   'Content-Type': 'application/json'
+  // },
+  //     body: JSON.stringify(adventure)
+  //   }).then( r => r.json())
+  //   .then(console.log)
+  console.log(adventure)
+  }
+
 
   render(){
     console.log("adventureObj", this.state.adventureObj);
@@ -89,10 +108,10 @@ export default class Trip extends Component{
       <Grid>
       <Grid.Row>
         <Grid.Column>
-          <Dreamboat adventures={this.state.potentialAdventures}/>
+          <Dreamboat adventures={this.state.potentialAdventures} handleAddAdventureButton={this.handleAddAdventureButton}/>
         </Grid.Column>
         <Grid.Column>
-          <Itinerary/>
+          <Itinerary adventures={this.state.adventures}/>
           <br />
           <AdventureForm
             handleSubmit={this.handleSubmit}

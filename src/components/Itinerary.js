@@ -23,7 +23,12 @@ return (
         </th>
         <th>
           <h5 className="ui center aligned header">
-            eighborhood
+            Location
+          </h5>
+        </th>
+        <th>
+          <h5 className="ui center aligned header">
+            Point Person
           </h5>
         </th>
         <th>
@@ -33,7 +38,7 @@ return (
         </th>
       </tr>
 
-      {adventures.adventures.map(adventure=><Adventure adventure={adventure} />)}
+      {this.props.adventures.map(adventure=><Adventure adventure={adventure} />)}
 
     </tbody>
   </table>
